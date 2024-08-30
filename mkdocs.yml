@@ -31,7 +31,6 @@ plugins:
       caption_position: bottom
       background: white
       shadow: true
-      manual: false
   - blog:
       blog_toc: true
       archive_date_format: yyyy
