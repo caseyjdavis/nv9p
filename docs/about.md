@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # About
 
 My interest in amateur radio began in 2013 when I was living in Colorado Springs. I had no idea this whole other world of amateur radio existed and when I started to learn about it I knew I had to get involved. I studied for the Technician exam and found the exam was being offered at a local church. I went in one Saturday and passed both the Technician and General exam sessions and was given the callsign KE0BUI.
@@ -10,4 +15,4 @@ I requested a vanity callsign from the FCC and received the callsign NV9P on the
 Casey
 NV9P
 
-![Mobile Ops Jacks Gulch](../../img/camping-jacks-gulch-04.png)
+![Mobile Ops Jacks Gulch](img/camping-jacks-gulch-04.png)

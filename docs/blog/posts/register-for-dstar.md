@@ -1,6 +1,6 @@
 ---
 date:
-  created: 2024-08-24
+  created: 2024-08-12
 readtime: 4
 pin: true
 links:
@@ -11,7 +11,9 @@ links:
 
 ![Icom D-STAR](../../img/d-star-logo.jpg)
 
-New Callsign Registration is a two-step process.  
+New Callsign Registration is a two-step process. Here are the steps to register your call sign.
+
+<!-- more -->
 
 ## First Step – get an account on a D-STAR gateway
 
