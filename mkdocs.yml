@@ -35,11 +35,6 @@ plugins:
       blog_toc: true
       archive_date_format: yyyy
       pagination_per_page: 12
-  - rss:
-      match_path: "blog/posts/.*"
-      date_from_meta:
-        as_creation: date.created
-        as_update: date.updated
 
 extra:
   analytics:
