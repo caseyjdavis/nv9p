@@ -1,58 +1,10 @@
-# A Material for Mkdocs Blog Template
+# NV9P Amateur Radio
+## A blog about ham radio
 
-The purpose of the template in this repository is to give you a starting point
-for setting up a blog that makes use of features that Material for MkDocs
-provides and of selected integrations with other plugins that are of specific
-relevance to running a blog.
+My interest in amateur radio began in 2013 when I was living in Colorado Springs. I had no idea this whole other world of amateur radio existed and when I started to learn about it I knew I had to get involved. I studied for the Technician exam and found the exam was being offered at a local church. I went in one Saturday and passed both the Technician and General exam sessions and was given the callsign KE0BUI.
 
-It reflects the results you get by going through the [blog tutorials] in the
-documentation. 
+After a year of contacts and listening and a lot of studying I upgraded my license to Amateur Extra in Fort Collins and given the callsign AD0OW. I used mainly 2m and 70cm bands during this time with a Yaesu FT60R handi-talkie. I got to know the guys at the CSU Amateur Radio Club and learned a lot about repeaters. We overhauled the W0QEY repeater on the CSU campus for the first time in 30 years!
 
-[blog tutorials]: https://squidfunk.github.io/mkdocs-material/tutorials#blogs
+I requested a vanity callsign from the FCC and received the callsign NV9P on the 29th of May, 2015. I work the 40m and 20m bands on phone and PSK31. Lately I have been researching antenna options to expand my band capabilities and distance.
 
-## Requirements
-
-The to use the all the features this template uses, you need the [Insiders
-Edition] of Material for MkDocs but it should be easy enough to strip it down so
-that it works with the public version.
-
-[Insiders Edition]: https://squidfunk.github.io/mkdocs-material/insiders/
-
-You will also need to install the [mkdocs-rss-plugin].
-
-[mkdocs-rss-plugin]: https://github.com/guts/mkdocs-rss-plugin
-
-## Using it
-
-This the repository is a [template repository], so you can create as many forks 
-of it as you like and your repository will contain only a single commit to start 
-with, instead of the whole history of the template. Also, you can create a 
-private repository from this template (while forks inherit the visibility settings 
-from the original).
-
-[template repository]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template
-
-Simply hit the `Use this template` button. You can set the specifics of your new 
-repository from there.
-
-[repository that contains this template]: https://github.com/mkdocs-material/create-blog
-
-
-## Project layout
-
-The following shows the layout of the files in this template. Note that you can
-configure Material for MkDocs to use a different layout, this is simply the
-default.
-
-```
-mkdocs.yml              # The configuration file.
-docs/
-    index.md            # The documentation homepage.
-    blog/               # The directory that all blog content goes into (first blog instance)
-        posts/          # the place to put your posts
-        author/         # Author profiles
-        .authors.yml    # Author information to be added to posts (shared betwe
-ext/                    # Directory that contains code for the custom slugs
-hooks/                  # Directory for a hook that adds social media share buttons
-```
-
+73, Casey NV9P
