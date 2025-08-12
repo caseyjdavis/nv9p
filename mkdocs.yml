@@ -31,6 +31,8 @@ plugins:
       caption_position: bottom
       background: white
       shadow: true
+  - macros:
+      module_name: main
   - blog:
       blog_toc: true
       archive_date_format: yyyy
@@ -44,6 +46,7 @@ extra:
     - icon: fontawesome/brands/github
       name: NV9P on Github
       link: https://github.com/caseyjdavis
+  recent_posts_count: 3
 
 markdown_extensions:
   - tables

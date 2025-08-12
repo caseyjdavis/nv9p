@@ -7,6 +7,14 @@ hide:
 
 Welcome to the website of the radio station NV9P. On these pages I try and share some of my amateur radio experiences and related projects. I should probably mention up front that I am a self taught electronics enthusiast and that's probably being too generous. Amateur radio caught my eye in 2013 and I had no idea how unforgivingly difficult it would be for me muddling through every step of the way. There is an intense learning curve and oftentimes it takes me dozens of attempts before I get something even close to success. However it is really satisfying when you finally do make a breakthrough but be warned those are few and far between.
 
+## Latest Blog Posts
+
+{% for post in recent_posts(3) %}
+#### [{{ post.title }}]({{ post.url }})
+{% endfor %}
+
+[View all posts →](blog/index.md)
+
 ## Here are some projects I have been tinkering with lately
 
 ### Using D-Star with an Icom ID-52a handheld radio
