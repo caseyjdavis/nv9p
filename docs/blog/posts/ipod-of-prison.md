@@ -1,10 +1,11 @@
 ---
+title: The iPod of Prison
 date:
   created: 2015-04-11
 readtime: 5
 pin: true
-links:
-  slug: interesting
+tags:
+  - interesting
 ---
 
 # The iPod of Prison

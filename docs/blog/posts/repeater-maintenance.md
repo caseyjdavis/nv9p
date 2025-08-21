@@ -1,10 +1,11 @@
 ---
+title: CSU Repeater Maintenance
 date:
   created: 2015-08-01
 readtime: 3
 pin: true
-links:
-  slug: repeater
+tags: 
+ - repeater
 ---
 
 # CSU Repeater Maintenance

@@ -1,10 +1,11 @@
 ---
+title: Jeeping Moab
 date:
   created: 2016-05-08
 readtime: 1
 pin: true
-links:
-  slug: jeep
+tags:
+ - jeep
 ---
 
 # Jeeping Moab

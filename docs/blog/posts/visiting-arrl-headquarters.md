@@ -1,10 +1,11 @@
 ---
+title: Visiting ARRL Headquarters
 date:
   created: 2015-06-29
 readtime: 3
 pin: true
-links:
-  slug: w1aw
+tags:
+  - w1aw
 ---
 
 # Visiting ARRL Headquarters

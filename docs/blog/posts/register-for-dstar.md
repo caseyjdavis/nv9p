@@ -1,10 +1,11 @@
 ---
+title: Register for D-STAR
 date:
   created: 2024-08-12
 readtime: 4
 pin: true
-links:
-  slug: dstar
+tags:
+ - dstar
 ---
 
 # Register for D-STAR

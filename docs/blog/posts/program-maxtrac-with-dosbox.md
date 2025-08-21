@@ -1,10 +1,11 @@
 ---
+title: Program Maxtrac with DosBox
 date:
   created: 2017-04-01
 readtime: 15
 pin: true
-links:
-  slug: aprs
+tags:
+ - aprs
 ---
 
 # Program Maxtrac with DosBox

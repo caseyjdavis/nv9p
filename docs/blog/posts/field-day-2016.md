@@ -1,10 +1,11 @@
 ---
+title: Field Day 2016
 date:
   created: 2016-06-25
 readtime: 1
 pin: true
-links:
-  slug: field day
+tags:
+ - field day
 ---
 
 # Field Day 2016

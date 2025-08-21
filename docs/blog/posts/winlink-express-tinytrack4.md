@@ -1,10 +1,11 @@
 ---
+title: Winlink Express using Tinytrack4 and Motorola
 date:
   created: 2024-08-14
 readtime: 25
 pin: true
-links:
-  slug: packet
+tags:
+- packet
 ---
 
 # Winlink Express using Tinytrack4 and Motorola
@@ -22,8 +23,6 @@ Really these instructions are more of a reminder for me because I have stumbled 
 So this topic has been beat to death about interfacing with Motorola radios using the Accessory Pin connector but I had such a hard time with it I wrote several articles walking through the process. Hopefully I was save some poor soul hours of their life.
 
 [Making a USB programming cable for older Motorola Radios](usb-programming-cable-motorola.md)
-
-[TODO Making an TNC interface cable for older Motorola Radios](Making an TNC interface cable for older Motorola Radios)
 
 Okay after you have cleared those two hurtles, you can begin to program the radio using the Motorola CPS programming software.
 

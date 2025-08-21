@@ -1,10 +1,11 @@
 ---
+title: First HF Station
 date:
   created: 2015-05-31
 readtime: 2
 pin: true
-links:
-  slug: ugh
+tags:
+ - ugh
 ---
 
 # First HF Station

@@ -1,10 +1,11 @@
 ---
+title: High Altitude Balloon Part 2 Trackuino
 date:
   created: 2018-04-26
 readtime: 10
 pin: true
-links:
-  slug: hab
+tags:
+ - hab
 ---
 
 # High Altitude Balloon Part 2: Trackuino

@@ -1,10 +1,11 @@
 ---
+title: Mobile Ops Jacks Gulch
 date:
   created: 2016-06-05
 readtime: 5
 pin: true
-links:
-  slug: mobile
+tags:
+ - mobile
 ---
 
 # Mobile Ops Jacks Gulch

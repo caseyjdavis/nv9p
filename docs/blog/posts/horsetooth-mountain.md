@@ -1,10 +1,11 @@
 ---
+title: Horsetooth Mountain
 date:
   created: 2016-04-16
 readtime: 1
 pin: true
-links:
-  slug: activation
+tags:
+ - activation
 ---
 
 # Horsetooth Mountain

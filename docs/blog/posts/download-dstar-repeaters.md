@@ -1,10 +1,11 @@
 ---
+title: Downloading DSTAR Repeaters to your radio
 date:
   created: 2024-08-16
 readtime: 5
 pin: true
-links:
-  slug: dstar
+tags:
+ - dstar
 ---
 
 # Downloading DSTAR Repeaters to your radio

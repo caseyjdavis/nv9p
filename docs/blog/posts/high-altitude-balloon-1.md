@@ -1,10 +1,11 @@
 ---
+title: High Altitude Balloon Part 1 Cameras
 date:
   created: 2018-04-16
 readtime: 10
 pin: true
-links:
-  slug: hab
+tags:
+ - hab
 ---
 
 # High Altitude Balloon Part 1: Cameras

@@ -1,14 +1,11 @@
 ---
+title: ARRL Rookie Roundup 2015
 date:
   created: 2015-04-08
 readtime: 2
 pin: true
-links:
-  - Homepage: index.md#project-layout
-  - Blog index: blog/index.md
-  - External links:
-    - Material documentation: https://squidfunk.github.io/mkdocs-material
-slug: contest
+tags:
+  - contest
 ---
 
 # ARRL Rookie Roundup 2015

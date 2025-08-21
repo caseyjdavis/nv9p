@@ -1,10 +1,11 @@
 ---
+title: California QSO Party 2015
 date:
   created: 2015-10-05
 readtime: 10
 pin: true
-links:
-  slug: contest
+tags:
+ - contest
 ---
 
 # California QSO Party 2015

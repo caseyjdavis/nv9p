@@ -1,10 +1,12 @@
 ---
+title: Configuring Cloudlog on Debian
 date:
   created: 2025-08-11
 readtime: 15
 pin: true
-links:
-  slug: radio
+tags:
+ - radio
+ - logging
 ---
 
 # Configuring Cloudlog on Debian

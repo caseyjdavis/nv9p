@@ -1,10 +1,11 @@
 ---
+title: Making a USB Programming Cable for old Motorolas
 date:
   created: 2024-07-28
 readtime: 3
 pin: true
-links:
-  slug: motorola
+tags:
+  - motorola
 hide:
   - toc
 ---
