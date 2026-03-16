@@ -8,3 +8,44 @@ After a year of contacts and listening and a lot of studying I upgraded my licen
 I requested a vanity callsign from the FCC and received the callsign NV9P on the 29th of May, 2015. I work the 40m and 20m bands on phone and PSK31. Lately I have been researching antenna options to expand my band capabilities and distance.
 
 73, Casey NV9P
+
+## Setup
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Editing and Previewing
+
+Start the local development server with live reload:
+
+```bash
+mkdocs serve
+```
+
+The site will be available at `http://localhost:8000`. Changes to any markdown file will reload automatically.
+
+Blog posts live in `docs/blog/posts/`. Each post requires YAML frontmatter at the top:
+
+```yaml
+---
+title: Your Post Title
+date:
+  created: 2024-01-15
+readtime: 5
+tags:
+  - tag1
+---
+```
+
+## Deploying
+
+Build the static site:
+
+```bash
+mkdocs build
+```
+
+The output is generated in the `site/` directory and can be deployed to any static hosting provider.
