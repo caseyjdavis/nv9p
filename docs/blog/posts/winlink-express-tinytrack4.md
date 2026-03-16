@@ -12,19 +12,19 @@ tags:
 
 ![Winlink Express](../../img/winlink.jpg)
 
-I'm not really sure why but when I was first learning about all the different aspects of ham radio I always thought sending an e-mail over Winlink Express was the coolest thing. I believe I read about sailors circumnavigating the world on sailboats and one of them used their VHF radio onboard to send e-mail to let their family and friends they were okay. No Starlink, just packet radio!
+I'm not really sure why, but when I was first learning about ham radio I always thought sending an email over Winlink was the coolest thing. I remember reading about sailors circumnavigating the globe who used their onboard VHF radio to send email and let family and friends know they were okay. No Starlink, just packet radio!
 
 <!-- more -->
 
-Really these instructions are more of a reminder for me because I have stumbled through this setup twice now before I got around to documenting the process. Big thanks to [N3LUD](http://n3lud.blogspot.com) for pointing me in the right direction with this project.
+Really these instructions are more of a reminder for myself — I stumbled through this setup twice before I got around to documenting it. Big thanks to [N3LUD](http://n3lud.blogspot.com) for pointing me in the right direction with this project.
 
 ## Program the Motorola CDM1250 Radio
 
-So this topic has been beat to death about interfacing with Motorola radios using the Accessory Pin connector but I had such a hard time with it I wrote several articles walking through the process. Hopefully I was save some poor soul hours of their life.
+This topic has been covered extensively, but interfacing with Motorola radios via the Accessory Connector gave me so much trouble that I wrote several articles walking through the process. Hopefully I can save someone hours of their life.
 
 [Making a USB programming cable for older Motorola Radios](usb-programming-cable-motorola.md)
 
-Okay after you have cleared those two hurtles, you can begin to program the radio using the Motorola CPS programming software.
+Once you've cleared those two hurdles, you can begin programming the radio using Motorola CPS software.
 
 1. Under **Accessory Configuration** I had to use **Filtered Audio** and **Data PTT Overrides** Voice in order for my TinyTrack4 to hear the packets through the radio and transmit out
 

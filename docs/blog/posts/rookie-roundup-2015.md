@@ -13,10 +13,11 @@ tags:
 ![ARRL Rookie Roundup](../../img/arrl.jpg)
 
 
-This was my very first attempt at contesting. I participated in the annual ARRL Rookie Roundup this year with the help of John Wells, KB0NE.
+This was my very first attempt at contesting. I participated in the annual ARRL Rookie Roundup with the help of John Wells, KB0NE.
+
 <!-- more -->
 
-John was kind enough to share his shack with me and show me the basics of operating in a contest. I didn't score too many points but it was a great afternoon and got me thinking about how to contest more efficiently in the future.
+John was kind enough to share his shack and show me the basics of contest operating. I didn't score many points, but it was a great afternoon and got me thinking about how to contest more efficiently in the future.
 
 ![Contest Station](../../img/rookieroundup-01.jpg)
 

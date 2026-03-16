@@ -12,7 +12,7 @@ tags:
 
 ![Icom D-STAR](../../img/d-star-logo.jpg)
 
-Thankfully there is a super slick website that will generate a comman separated value (CSV) file that you can copy/paste on your radio and lo and behold every DSTAR repeater in the world is correctly programmed into your radio.
+Thankfully there is a slick website that generates a comma-separated value (CSV) file you can load onto your radio and — lo and behold — every D-STAR repeater in the world is correctly programmed in.
 
 <!-- more -->
 

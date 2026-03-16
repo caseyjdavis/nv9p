@@ -12,7 +12,7 @@ tags:
 
 ![Icom D-STAR](../../img/d-star-logo.jpg)
 
-New Callsign Registration is a two-step process. Here are the steps to register your call sign.
+New callsign registration is a two-step process. Here are the steps to get your callsign registered for D-STAR.
 
 <!-- more -->
 
@@ -33,9 +33,9 @@ Then click on the Personal Information tab (upper right of main page).  Each num
 - Enter a capital "Z" in the second box. Check the "AccessPoint" box.
 - Click Update
 
-After you’ve entered your terminal, it sometimes takes several hours for the updates to propagate through the D-STAR network. You can check at:
+After entering your terminal, it can sometimes take several hours for the update to propagate through the D-STAR network. You can check the status at:
 [https://regist.dstargateway.org/regcheck/index.php](https://regist.dstargateway.org/regcheck/index.php).
 
 ## Final Step
 
-Be sure to enter your registered callsign into your radio's MY or MYCALL field.  You must do this before that radio will be able to talk to others on reflectors or connected repeaters.  For nearly everyone, you only need one terminal, even if you have more than one D-STAR radio.  Just use the same registered callsign in MY/MYCALL on all your radios.
+Be sure to enter your registered callsign into your radio's MY or MYCALL field. You must do this before the radio will be able to connect to reflectors or linked repeaters. For nearly everyone, one terminal is all you need — even if you have multiple D-STAR radios. Just use the same registered callsign in MY/MYCALL on all of them.

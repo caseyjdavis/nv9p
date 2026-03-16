@@ -12,7 +12,7 @@ tags:
 
 ![Program Maxtrac with DosBox](../../img/aprs.png)
 
-I found a used Maxtrac 300 radio on eBay that I wanted to repurpose into an APRS tracker and realized I needed to program the APRS frequency. Here is how you use DoxBox to program your radio.
+I found a used Maxtrac 300 radio on eBay that I wanted to repurpose as an APRS tracker, which meant I needed to program in the APRS frequency. Here is how to use DOSBox to program your radio.
 
 <!-- more -->
 
@@ -25,10 +25,10 @@ I found a used Maxtrac 300 radio on eBay that I wanted to repurpose into an APRS
 - DosBox Software (https://www.dosbox.com/)
 - GM300 Software (gm300v.5.zip)
 
-Install the FTDI Driver for Windows
-Install the DosBox software
-Download the GM300 software and extract it to C:\GM300
-Plug in your FTDI USB cable and check Device Manager to see what COM port it was assigned:
+- Install the FTDI driver for Windows
+- Install the DOSBox software
+- Download the GM300 software and extract it to C:\GM300
+- Plug in your FTDI USB cable and check Device Manager to see what COM port it was assigned
 
 ### Locate your DosBox config file for editing
 
@@ -58,12 +58,12 @@ MOUNT c C:\GM300
 c:
 ```
 
-Now when you run DosBox all you need to do is launch the program with
+Now when you run DOSBox, launch the program with:
 
 ```
 GM300.EXE
 ```
 
-Here's what the Main Menu looks like when loaded
+Here's what the Main Menu looks like when loaded.
 
-First you need to pull the current code plug off the radio before you can make changes
+First you need to read the current codeplug off the radio before you can make any changes.

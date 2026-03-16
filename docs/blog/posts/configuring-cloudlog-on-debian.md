@@ -13,15 +13,15 @@ tags:
 
 ![Cloudlog Dashboard](../../img/cloudlog-dashboard.png)
 
-Cloudlog is an open-source PHP & MySQL based amateur radio logging application, allowing you to log contacts via a web browser on any device and platform.
+Cloudlog is an open-source, PHP and MySQL based amateur radio logging application that lets you log contacts through a web browser on any device and platform.
 
-This is an ideal general-purpose logging application, supporting HF to Microwave, it can even interface with your radio via CAT, sync logs from WSJT-X & if you are a satellite operator integrates with SatPC32.
+It's an ideal general-purpose logging application with support from HF to Microwave. It can interface with your radio via CAT, sync logs from WSJT-X, and if you're a satellite operator it integrates with SatPC32.
 
 <!-- more -->
 
 ## Configuring Cloudlog on Debian
 
-I ran Debian from a LXC container on my Proxmox host in my home network. This allowed me to have it running on a low power computer and it can backup to my Truenas box as well. This is assuming you are on a Debian/Ubuntu install.
+I ran Debian from an LXC container on my Proxmox host in my home network. This lets me run it on a low-power machine and back it up to my TrueNAS box as well. These steps assume you are on a Debian or Ubuntu install.
 
 ### 1. Install Nginx
 
@@ -271,12 +271,10 @@ Start the PHP-FPM service depending on your installed PHP version. For example, 
 ```$ sudo systemctl start php8.2-fpm```
 
 Enable PHP-FPM to start automatically at system boot.
-console
 
 ```$ sudo systemctl enable php8.2-fpm```
 
 View the PHP-FPM service status and verify that it's running.
-console
 
 ```$ sudo systemctl status php8.2-fpm```
 
@@ -288,7 +286,7 @@ Install Certbot and its Nginx plugin with apt:
 
 ```sudo apt install certbot python3-certbot-nginx```
 
-Certbot is now ready to use, but in order for it to automatically configure SSL for Nginx.
+Certbot is now ready to use. In order for it to automatically configure SSL for Nginx, you'll need a valid domain pointed at your server.
 
 ### 8. Obtaining an SSL Certificate
 
@@ -408,7 +406,7 @@ QUIT
 
 You need to run the install wizard. At this point, please open ```http://cloudlog.qth.nv9p.com/install``` and follow the guide.
 
-The directory field needs to be empty if you extracted or cloned Cloudlog directly to the web server's root directory (e.g. /var/www/html). If you used a sub directory like /var/www/html/cloudlog you need to set the realtive path /cloudlog in the directory field.
+The directory field should be left empty if you extracted or cloned Cloudlog directly to the web server's root directory (e.g. /var/www/html). If you used a subdirectory like /var/www/html/cloudlog, set the relative path /cloudlog in the directory field.
 
 !!! danger
 
@@ -423,6 +421,6 @@ When you have completed the install wizard, do the following:
 
 ### Credits: Cloudlog Wiki for Linux
 
-Most of this documentation I pulled from the official Cloudlog wiki along with Google and AI to get the steps put together to install on a Debian LXC container.
+Most of this documentation was pulled from the official Cloudlog wiki, supplemented with some Googling and AI assistance to piece together the steps for a Debian LXC container install.
 
 [https://github.com/magicbug/Cloudlog/wiki/Installation](https://github.com/magicbug/Cloudlog/wiki/Installation)

@@ -12,7 +12,7 @@ tags:
 
 ![High Altitude Balloon](../../img/iHAB-2_Panorama1_sm.jpg)
 
-The most important piece of equipment for the high altitude balloon launch is the Trackuino. This is a quick walkthrough on building the Trackuino and a test drive on APRS.
+The most important piece of equipment for a high-altitude balloon launch is the Trackuino. This is a quick walkthrough on building the Trackuino and taking it for a test drive on APRS.
 
 <!-- more -->
 
@@ -21,9 +21,9 @@ Here's the introduction to what the Trackuino does from its website:
 This is the firmware for Trackuino, an open-source APRS tracker based on the Arduino platform. It was designed primarily to track high altitude balloons, so it has other handy features like reading temperature sensors and a buzzer for acoustic location. Trackuino is intended for use by licensed radio amateurs.
 </em>
 
-It's a tiny arduino capable of transmitting data over the 2 meter amateur radio band on 144.390Mhz. That is the general frequency used for APRS, which stands for Automatic Packet Reporting System. It's a way we can use amateur radio frequencies coupled with GPS coordinates to track our balloon in near real time via an chase car radio setup. It can give us telemetry on the balloon like its altitude, speed, temperature and other factors.
+It's a tiny Arduino capable of transmitting data over the 2-meter amateur radio band on 144.390 MHz — the standard frequency used for APRS (Automatic Packet Reporting System). APRS lets us use amateur radio frequencies combined with GPS coordinates to track the balloon in near real time via a chase car radio setup. It can give us telemetry like the balloon's altitude, speed, temperature, and more.
 
-Here's the build of materials for the Trackuino
+Here's the bill of materials for the Trackuino:
 
 | **Part** | **Source** |
 | ----------- | --------------------------------------- |
@@ -33,10 +33,10 @@ Here's the build of materials for the Trackuino
 | GPS Antenna |	![https://www.amazon.com](https://www.amazon.com) |
 | V6 Dipole Antenna |	[https://www.byonics.com/antennas](https://www.byonics.com/antennas) |
 
-Here is my finished Trackuino with the Trackuino Shield, Venus GPS, Dipole Antenna and GPS Antenna:
+Here is my finished Trackuino with the Trackuino Shield, Venus GPS, dipole antenna, and GPS antenna:
 
 ![Trackuino](../../img/trackuino.jpg)
 
-I was able to test the Trackuino by powering it up and waiting for a GPS fix, then it started beaconing out on 144.390Mhz every 60 seconds and showing up on APRS.fi
+I tested the Trackuino by powering it up and waiting for a GPS fix. Once it had a lock, it started beaconing on 144.390 MHz every 60 seconds and showing up on APRS.fi.
 
 ![APRS Map](../../img/trackuino-aprs.PNG)

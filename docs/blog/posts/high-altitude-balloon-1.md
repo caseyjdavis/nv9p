@@ -12,32 +12,32 @@ tags:
 
 ![High Altitude Balloon](../../img/iHAB-2_Panorama1_sm.jpg)
 
-For my high altitude balloon launch, I wanted to send up something a little cheaper than a $400 GoPro camera in the event that I can't locate the balloon when it comes back to earth!
+For my high-altitude balloon launch, I wanted to send up something a little cheaper than a $400 GoPro camera, in the event I can't locate the balloon when it comes back to earth!
 
 <!-- more -->
 
-So I found a much cheaper alternative that gave me the same level of customization but at a fraction of the price... old Canon cameras running the Canon Hack Development Kit CHDK
+So I found a much cheaper alternative that gave me the same level of customization at a fraction of the price: old Canon cameras running the Canon Hack Development Kit (CHDK).
 
-For $50 I was able to score two Canon AS1000 point and shoot cameras off eBay and loaded two 64GB flash cards with the latest stable CHDK package (1.41 as of the time of this post)
+For $50 I was able to score two Canon A1000 point-and-shoot cameras off eBay and loaded two 64GB flash cards with the latest stable CHDK package (1.41 at the time of this post).
 
 ![Canon Powershot](../../img/powershot.jpg)
 
-One camera will be my "still photos" camera and the other will be the "video camera". One of the excellent features of CHDK is the scripting feature. You can copy LUA scripts to the memory card and have them execute a series of functions on the camera. In this case I want the cameras to immediately start recording video once powered on or shooting photos every 5 seconds once powered on.
+One camera would be the "still photos" camera and the other the "video camera." One of the excellent features of CHDK is scripting. You can copy Lua scripts to the memory card and have them execute a series of functions on the camera — in this case, immediately start recording video or shoot a photo every 5 seconds once powered on.
 
-I found it tricky to install CHDK on the 64GB SD Card I had purchased and found out my cameras were manufactuered in 2008. Everytime I inserted the card to try and format it on the camera it just complained with "Memory Card Error". So after a little digging I found that I could partition the cards in linux, copy the CHDK files on to them and then the cameras would be happy.
+Installing CHDK on the 64GB SD cards turned out to be tricky. My cameras were manufactured in 2008, and every time I inserted the card and tried to format it on the camera, I got a "Memory Card Error." After some digging I found that I could partition the cards in Linux, copy the CHDK files onto them, and the cameras would be happy.
 
-First I used GParted in Ubuntu to create the first partition at 16MB as a FAT16 boot partition. After I confirmed the changes I right clicked the partition, went to "Manage Flags" and set this partition as a boo partition. This allows the camera to load up CHDK everytime on power and I don't have to manually activate it each time. Then I created a second partition as FAT32 that took up the rest of the space on the memory card. Here's what my GParted screen looked like after everything was finalized:
+I used GParted in Ubuntu to create the first partition at 16MB as a FAT16 boot partition. After confirming the changes I right-clicked the partition, went to "Manage Flags," and set it as a boot partition. This lets the camera load CHDK automatically every time it powers on without any manual activation. Then I created a second FAT32 partition that used the rest of the space on the card. Here's what my GParted screen looked like when everything was finalized:
 
 ![GParted](../../img/CHDK-GParted.png)
 
-Then I had to copy the CHDK files to the camera. I downloaded the latest stable version of CHDK, 1.41 and extracted it on my laptop. Then I copied the DISKBOOT.BIN and PS.F12 files to the first boot patition. Then I copied the CHDK folder to the second partiton. Here are screenshots of each folder and what they should look like:
+Then I copied the CHDK files to the card. I downloaded the latest stable version (1.41), extracted it on my laptop, then copied the DISKBOOT.BIN and PS.FI2 files to the first boot partition and the CHDK folder to the second partition. Here are screenshots of each folder and what they should look like:
 
 ![CHDK](../../img/CHDK 01.png)
 ![CHDK](../../img/CHDK 02.png)
 
-Finally I ejected the Memory card and write protected the card with the little plastic tab on the side. This step is important! It's what tells the camera to load from the boot partition. Now when you power on the camera the CHDK splashscreen will show after about 3 seconds.
+Finally I ejected the card and write-protected it using the little plastic tab on the side. This step is important — it's what tells the camera to load from the boot partition. Now when you power on the camera the CHDK splash screen shows after about 3 seconds.
 
-Here's the lua script for continuous still shots of the camera for as long as the battery lasts or until the memory card fills up
+Here's the Lua script for continuous still shots for as long as the battery lasts or until the memory card fills up:
 
 ```lua
 --[[ High Altitude Balloon Camera script for Canon AS1100, still photos
@@ -149,7 +149,7 @@ print("Power down")
 post_levent_to_ui('PressPowerButton')
 ```
 
-This is the video recording script and it allows you to:
+This is the video recording script. It allows you to:
 
 - turn the display on & off by pressing the DISP button or down button,
 - halt the script by pressing the MENU button

@@ -12,8 +12,8 @@ tags:
 
 ![First HF Station](../../img/icom-746.jpg)
 
-My first HF station, a used Icom-746 bought off Craigslist that came with an Astron SS-30M power supply. Word of advice, don't buy radios off Craigslist..
+My first HF station — a used Icom 746 bought off Craigslist that came with an Astron SS-30M power supply. Word of advice: don't buy radios off Craigslist.
 
 <!-- more -->
 
-I messed with this radio for weeks not having good luck with contacting stations only to find out the transmitter was fried. It was only putting out about 3 watts of power. After having it repaired I sold it to buy a new Icom 7200 and had much better luck. Still it left a lasting mark because I spent so much time getting absolutely nowhere with making contacts.
+I messed with this radio for weeks without making a single contact, only to eventually discover the transmitter was fried. It was only putting out about 3 watts. After having it repaired I sold it and bought a new Icom 7200, which worked much better. Still, it left a lasting mark — I spent so much time getting absolutely nowhere that the experience shaped how I approach troubleshooting to this day.

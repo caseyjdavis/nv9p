@@ -5,7 +5,7 @@ hide:
 
 # NV9P Amateur Radio :fontawesome-solid-walkie-talkie:
 
-Welcome to the website of the radio station NV9P. On these pages I try and share some of my amateur radio experiences and related projects. I should probably mention up front that I am a self taught electronics enthusiast and that's probably being too generous. Amateur radio caught my eye in 2013 and I had no idea how unforgivingly difficult it would be for me muddling through every step of the way. There is an intense learning curve and oftentimes it takes me dozens of attempts before I get something even close to success. However it is really satisfying when you finally do make a breakthrough but be warned those are few and far between.
+Welcome to the website of radio station NV9P. On these pages I share some of my amateur radio experiences and related projects. I should probably mention up front that I am a self-taught electronics enthusiast — and that's probably being too generous. Amateur radio caught my eye in 2013 and I had no idea how unforgivingly difficult it would be, muddling through every step of the way. There is an intense learning curve and oftentimes it takes me dozens of attempts before I get something even close to success. It is really satisfying when you finally do make a breakthrough, but be warned — those are few and far between.
 
 ## Latest Blog Posts
 
@@ -15,7 +15,7 @@ Welcome to the website of the radio station NV9P. On these pages I try and share
 
 [View all posts →](blog/index.md)
 
-## Here are some projects I have been tinkering with lately
+## Projects I've Been Tinkering With
 
 ### Using D-Star with an Icom ID-52a handheld radio
 ![Icom ID-52a](img/icom-id52a.jpg)
@@ -26,7 +26,7 @@ This has been my journey using D-Star so far:
 - Downloading the D-STAR repeater list into your HT
 - D-STAR Basics: Linking, Unlinking, Echotest
 
-### Packet Radio over 2 meter
+### Packet Radio over 2 Meters
 ![APRS Packet Station](img/packet-station.jpg)
 
 For this project I had to overcome several hurdles:

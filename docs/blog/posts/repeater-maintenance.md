@@ -10,13 +10,13 @@ tags:
 
 # CSU Repeater Maintenance
 
-The local Colorado State University CSU Amateur Radio club was doing some maintenance on their W0QEY repeater and I volunteered to help.
+The Colorado State University (CSU) Amateur Radio Club was doing maintenance on their W0QEY repeater and I volunteered to help.
 
 ![W0QEY](../../img/w0qey-01.jpg)
 
 <!-- more -->
 
-Mainly we were just cleaning out old equipment and cleaning the existing equipment. It was fun seeing the guts of a repeater and seeing how the cavities are tuned for clean transmit.
+Mostly we were cleaning out old equipment and tidying up what remained. It was fun seeing the guts of a repeater and learning how the cavities are tuned for clean transmission.
 
     Frequency: 446.8125- minus
     Location: Fort Collins, CSU Durward Hall

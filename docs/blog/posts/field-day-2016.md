@@ -16,4 +16,4 @@ I operated at the Cabin in Pecos, New Mexico for Field Day 2016.
 
 <!-- more -->
 
-This was my first field day and I lumped it together with a family trip to the cabin so I didn't get much operating time. Between radio difficulties and band conditions I only managed 2 measely contacts all weekend. I used a Buddipole setup with my Icom 7200 HF radio with a tuner.
+This was my first Field Day and I combined it with a family trip to the cabin, so I didn't get much operating time. Between radio difficulties and poor band conditions I only managed 2 measly contacts all weekend. I used a Buddipole setup with my Icom 7200 HF radio and a tuner.
