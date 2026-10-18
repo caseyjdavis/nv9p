@@ -3,6 +3,8 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from markdown.extensions.toc import slugify
+
 def define_env(env):
     @env.macro
     def recent_posts(count=3):
@@ -114,8 +116,8 @@ def parse_post(filepath, filename):
         if not post_date:
             post_date = datetime.fromtimestamp(os.path.getmtime(filepath))
         
-        # Create URL - adjust this based on your blog URL structure
-        url_slug = filename.replace('.md', '')
+        # Create URL - the blog plugin slugifies the post title (unless a slug is set)
+        url_slug = metadata.get('slug', '') or slugify(title, '-')
         if post_date:
             # Format: /blog/YYYY/MM/DD/slug/
             url = f"/blog/{post_date.year}/{post_date.month:02d}/{post_date.day:02d}/{url_slug}/"

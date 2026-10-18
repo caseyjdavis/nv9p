@@ -1,0 +1,69 @@
+[project]
+site_name = "NV9P Amateur Radio"
+site_description = "Ham Radio projects and experiences by NV9P"
+site_url = "https://www.nv9p.com/"
+nav = [
+  { "Home" = "index.md" },
+  { "Blog" = ["blog/index.md"] },
+  { "Logbook" = "logbook.md" },
+  { "QSL Cards" = "qsl-cards.md" },
+  { "About" = "about.md" },
+]
+
+[project.theme]
+favicon = "img/tower-broadcast-solid.svg"
+features = [
+  "navigation.indexes",
+]
+
+[project.theme.icon]
+logo = "fontawesome/solid/tower-broadcast"
+
+[project.theme.palette]
+scheme = "slate"
+primary = "deep-orange"
+accent = "deep-orange"
+
+[project.extra]
+recent_posts_count = 3
+
+[project.extra.analytics]
+provider = "google"
+property = "G-J9JWWV4FF8"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+name = "NV9P on Github"
+link = "https://github.com/caseyjdavis"
+
+# Search is enabled by default in Zensical.
+
+[project.plugins.glightbox]
+width = "100%"
+height = "auto"
+skip_classes = ["custom-skip-class-name"]
+auto_caption = false
+caption_position = "bottom"
+
+[project.plugins.macros]
+module_name = "main"
+
+[project.plugins.blog]
+blog_toc = true
+archive_date_format = "yyyy"
+pagination_per_page = 12
+
+[project.markdown_extensions]
+tables = {}
+attr_list = {}
+admonition = {}
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.critic = {}
+pymdownx.keys = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.snippets = {}
+pymdownx.superfences = {}

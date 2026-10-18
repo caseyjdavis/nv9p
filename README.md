@@ -11,9 +11,13 @@ I requested a vanity callsign from the FCC and received the callsign NV9P on the
 
 ## Setup
 
-Install dependencies:
+The site is built with [Zensical](https://zensical.org), which requires Python 3.11 or newer.
+
+Create a virtual environment and install dependencies:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -22,7 +26,7 @@ pip install -r requirements.txt
 Start the local development server with live reload:
 
 ```bash
-mkdocs serve
+zensical serve
 ```
 
 The site will be available at `http://localhost:8000`. Changes to any markdown file will reload automatically.
@@ -45,7 +49,7 @@ tags:
 Build the static site:
 
 ```bash
-mkdocs build
+zensical build
 ```
 
-The output is generated in the `site/` directory and can be deployed to any static hosting provider.
+The output is generated in the `site/` directory and can be deployed to any static hosting provider. Site configuration lives in `zensical.toml`.

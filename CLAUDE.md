@@ -4,33 +4,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-NV9P is a personal amateur radio blog built with MkDocs and the Material theme. Content is written in Markdown with YAML frontmatter; Python macros and hooks handle dynamic content generation.
+NV9P is a personal amateur radio blog built with [Zensical](https://zensical.org) (the successor to Material for MkDocs). Content is written in Markdown with YAML frontmatter; Python macros handle dynamic content generation.
 
 ## Common Commands
 
 ```bash
-# Install dependencies
+# Install dependencies (Python 3.11+)
 pip install -r requirements.txt
 
 # Start local dev server (hot reload at http://localhost:8000)
-mkdocs serve
+zensical serve
 
 # Build static site to site/
-mkdocs build
+zensical build
 ```
 
 ## Architecture
 
 ### Content Pipeline
 
-Blog posts live in `docs/blog/posts/*.md` with YAML frontmatter (`title`, `date`, `readtime`, `tags`, `pin`). MkDocs processes these through two custom Python components:
+Blog posts live in `docs/blog/posts/*.md` with YAML frontmatter (`title`, `date`, `readtime`, `tags`, `pin`). Zensical processes these through a custom Python macro module:
 
-- **`main.py`** — Loaded as a macro plugin (`module_name: main` in `mkdocs.yml`). Exposes `recent_posts(count)` as a Jinja2 template macro used in `docs/index.md` to display the latest posts. The `define_env(env)` function is the MkDocs entry point — do not run this file directly.
-- **`hooks/socialmedia.py`** — MkDocs hook that post-processes blog pages to inject Twitter/Facebook share buttons.
+- **`main.py`** — Loaded as a macro plugin (`module_name = "main"` in `zensical.toml`). Exposes `recent_posts(count)` as a Jinja2 template macro used in `docs/index.md` to display the latest posts. The `define_env(env)` function is the entry point — do not run this file directly.
+- **`hooks/socialmedia.py`** — Legacy MkDocs hook for share buttons. It is not enabled in the config.
 
 ### Key Config
 
-`mkdocs.yml` controls everything: theme, plugins (search, glightbox, macros, blog), nav structure, markdown extensions, and Google Analytics.
+`zensical.toml` controls everything: theme, plugins (glightbox, macros, blog; search is on by default), nav structure, markdown extensions, and Google Analytics.
 
 ### Blog Post Frontmatter
 
@@ -47,4 +47,4 @@ pin: false
 ---
 ```
 
-The `main.py` parser handles multiple date formats for flexibility.
+The `main.py` parser handles multiple date formats for flexibility. Post URLs are `/blog/YYYY/MM/DD/<slug>/`, where the slug is the slugified `title` unless a `slug` is set in frontmatter.
