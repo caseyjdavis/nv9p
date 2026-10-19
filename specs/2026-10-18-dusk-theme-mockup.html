@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NV9P Dusk Theme</title>
+<style>
+  :root { --bg:#14161b; --text:#e6e8ec; --muted:#9aa1ad; --line:#2c313b; --orange:#ff7043; --peach:#ffd9c2; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif; padding:32px 16px 64px; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 28px; }
+  h2 { font-size:16px; margin:36px 0 10px; color:var(--peach); }
+  .frame { border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#1a1b22; }
+  .nav { display:flex; align-items:center; gap:20px; padding:12px 20px; font-size:14px; color:#fff; position:absolute; left:0; right:0; top:0; z-index:2; flex-wrap:wrap; }
+  .nav .logo { font-weight:700; letter-spacing:.04em; margin-right:auto; font-size:16px; }
+  .nav a { color:var(--peach); }
+  .nav a.on { color:#fff; border-bottom:2px solid var(--orange); }
+  .hero { position:relative; overflow:hidden; }
+  .hero.big { height:320px; } .hero.slim { height:150px; }
+  .hero svg { position:absolute; inset:0; width:100%; height:100%; }
+  .copy { position:absolute; left:32px; top:62px; z-index:2; max-width:70%; }
+  .call { font-size:54px; font-weight:800; line-height:1; }
+  .tag { margin-top:10px; font-size:16px; opacity:.92; }
+  .badges { margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; }
+  .badge { font:600 12px/1 ui-monospace, Menlo, monospace; padding:6px 9px; border-radius:4px; background:rgba(255,112,67,.18); color:#ffab91; border:1px solid rgba(255,112,67,.5); }
+  .slim .copy { top:58px; } .slim .copy .t { font-size:28px; font-weight:700; }
+  .body { padding:22px 32px 30px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .card { background:#23252e; border-top:3px solid var(--orange); border-radius:6px; padding:14px; font-size:13px; }
+  .card b { display:block; font-size:14px; margin-bottom:4px; }
+  .now { border:1px solid #3a2e3a; background:linear-gradient(180deg, #24202b, #1e1f27); border-radius:8px; padding:16px 18px; margin-bottom:18px; }
+  .now-head { font-weight:700; font-size:15px; color:var(--peach); display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .now-head .dot { width:8px; height:8px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 4px rgba(255,112,67,.2); }
+  .now-head .upd { font-weight:400; font-size:12px; color:var(--muted); margin-left:auto; }
+  .now-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .now-item { display:flex; gap:10px; font-size:13px; color:#cfd3da; }
+  .now-item b { display:block; color:#fff; font-size:14px; }
+  .now-item .ic { font-size:18px; line-height:1.2; }
+  @media (max-width:700px) { .now-grid { grid-template-columns:1fr; } }
+  .post p { color:#cfd3da; max-width:700px; margin:0 0 12px; }
+  .post .meta { color:var(--muted); font-size:13px; margin-bottom:14px; }
+  .post a { color:#ff8a65; }
+  @media (max-width:700px) { .hero.big { height:360px; } .copy { left:16px; max-width:92%; } .call { font-size:42px; } .grid { grid-template-columns:1fr; } .body { padding:16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Dusk colors + satellite logo</h1>
+  <p class="sub">This is direction A with the 🛰️ logo from B. The top one is the homepage. Below it is one way an inner page, like a blog post, could look: a slimmer strip of the same skyline.</p>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1b1f3a"/><stop offset=".55" stop-color="#6a3a5c"/><stop offset=".85" stop-color="#ff7043"/><stop offset="1" stop-color="#ffb74d"/>
+      </linearGradient>
+      <g id="range">
+        <path d="M0 230 L80 200 L160 215 L250 180 L330 205 L420 170 L520 200 L600 175 L700 205 L800 185 L900 210 L1000 190 L1100 205 V300 H0Z" fill="#4a2f4a" opacity=".85"/>
+        <path d="M0 255 L120 235 L210 245 L330 215 L400 228 L470 196 L520 182 L560 190 L610 220 L700 238 L820 222 L930 245 L1100 232 V300 H0Z" fill="#2a1f33"/>
+        <path d="M0 280 L140 268 L300 276 L460 262 L640 274 L820 264 L1100 276 V300 H0Z" fill="#17131f"/>
+      </g>
+    </defs>
+  </svg>
+
+  <h2>Homepage</h2>
+  <div class="frame">
+    <div class="hero big">
+      <nav class="nav"><span class="logo">🛰️ NV9P</span><a class="on">Home</a><a>Blog</a><a>Logbook</a><a>QSL Cards</a><a>About</a></nav>
+      <svg viewBox="0 0 1100 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <rect width="1100" height="300" fill="url(#dusk)"/>
+        <ellipse cx="760" cy="250" rx="560" ry="190" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 7"/>
+        <ellipse cx="420" cy="290" rx="700" ry="150" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="1" stroke-dasharray="2 9"/>
+        <g transform="translate(905 66.5) rotate(5.2)"><rect x="-4" y="-4" width="8" height="8" fill="#fff"/><rect x="-18" y="-2" width="11" height="4" fill="#ffd9c2"/><rect x="7" y="-2" width="11" height="4" fill="#ffd9c2"/></g>
+        <g aria-label="radiosonde balloon">
+          <path d="M660 34 C 676 34, 683 48, 681 60 C 679 72, 668 80, 662 84 L 658 84 C 652 80, 641 72, 639 60 C 637 48, 644 34, 660 34 Z" fill="#ffd9c2" opacity=".92"/>
+          <path d="M650 44 C 653 39, 658 38, 662 39" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+          <path d="M652 104 Q 660 94 668 104 Z" fill="#ffab91" opacity=".9"/>
+          <line x1="660" y1="84" x2="660" y2="96" stroke="#ffd9c2" stroke-opacity=".8" stroke-width="1"/>
+          <line x1="660" y1="104" x2="660" y2="128" stroke="#ffd9c2" stroke-opacity=".8" stroke-width="1"/>
+          <rect x="656" y="128" width="8" height="11" rx="1" fill="#fff"/>
+          <line x1="660" y1="139" x2="660" y2="148" stroke="#fff" stroke-width="1"/>
+        </g>
+        <use href="#range"/>
+      </svg>
+      <div class="copy">
+        <div class="call">NV9P</div>
+        <div class="tag">Working satellites from the Colorado Rockies</div>
+        <div class="badges"><span class="badge">2m · 145 MHz</span><span class="badge">70cm · 435 MHz</span><span class="badge">DM78</span></div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="now">
+        <div class="now-head"><span class="dot"></span>What I'm working on right now <span class="upd">updated Oct 2026</span></div>
+        <div class="now-grid">
+          <div class="now-item"><span class="ic">🛰️</span><div><b>Portable satellite tower</b>Building a portable tower for working 2m/70cm satellites</div></div>
+          <div class="now-item"><span class="ic">🎈</span><div><b>Front Range sonde chasing</b>Tracking and recovering radiosondes after they come down along the Front Range</div></div>
+          <div class="now-item"><span class="ic">☁️</span><div><b>Weather balloon launches</b>Launching my own weather balloons</div></div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card"><b>Latest post</b>Configuring Cloudlog on Debian</div>
+        <div class="card"><b>Project</b>D-Star with the ID-52a</div>
+        <div class="card"><b>Project</b>Packet radio on 2 meters</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Inner page (blog post)</h2>
+  <div class="frame">
+    <div class="hero slim">
+      <nav class="nav"><span class="logo">🛰️ NV9P</span><a>Home</a><a class="on">Blog</a><a>Logbook</a><a>QSL Cards</a><a>About</a></nav>
+      <svg viewBox="0 0 1100 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <rect width="1100" height="300" fill="url(#dusk)"/>
+        <ellipse cx="760" cy="300" rx="560" ry="160" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2 7"/>
+        <use href="#range"/>
+      </svg>
+      <div class="copy"><div class="t">Configuring Cloudlog on Debian</div></div>
+    </div>
+    <div class="body post">
+      <div class="meta">March 2025 · 6 min read · #cloudlog #logging</div>
+      <p>Cloudlog is a web-based amateur radio logging application. In this post I walk through installing it on a Debian server so that every contact is logged in one place…</p>
+      <p>Links and accents use the same <a href="#">sunset orange</a>, and the reading area stays a calm dark gray so long posts are easy on the eyes.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
