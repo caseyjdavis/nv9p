@@ -33,6 +33,12 @@
   letter-spacing: 0.04em;
 }
 
+/* The theme reserves a slot right of search for a repository link; this site
+   has none, so drop the empty slot and let search sit at the right edge */
+.md-header__source:not(:has(*)) {
+  display: none;
+}
+
 .md-tabs {
   background-color: var(--nv-sky-1);
   color: var(--nv-peach);
@@ -278,10 +284,11 @@
   border-left: 3px solid var(--nv-accent);
 }
 
-/* The homepage has no section navigation worth a sidebar on desktop; on
-   smaller screens the same sidebar is the menu drawer, so keep it there */
+/* The homepage, and pages with full_width: true, have no section navigation
+   worth a sidebar on desktop; on smaller screens the same sidebar is the menu
+   drawer, so keep it there */
 @media screen and (min-width: 76.25em) {
-  .md-container:has(.nv-banner--home) .md-sidebar--primary {
+  .md-container:has(.nv-banner--home, .nv-banner--full) .md-sidebar--primary {
     display: none;
   }
 }

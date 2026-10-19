@@ -200,7 +200,7 @@ class NowPanelTest(unittest.TestCase):
 
 CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
-PROBE = """<!doctype html><body><iframe id="f" src="/" width="%(w)d" height="1000"></iframe><pre id="out"></pre>
+PROBE = """<!doctype html><body><iframe id="f" src="%(src)s" width="%(w)d" height="1000"></iframe><pre id="out"></pre>
 <script>
 const f = document.getElementById("f");
 f.onload = () => setTimeout(() => {
@@ -211,6 +211,7 @@ f.onload = () => setTimeout(() => {
   document.getElementById("out").textContent = JSON.stringify({
     banner: box(".nv-banner"), art: box(".nv-banner__art"), copy: box(".nv-banner__copy"),
     sat: box("#nv-sat"), sonde: box("#nv-sonde"),
+    header: box(".md-header__inner"), search: box(".md-search"),
     sidebar: sidebar ? win.getComputedStyle(sidebar).display : null,
     scroll: d.documentElement.scrollWidth,
   });
@@ -236,20 +237,24 @@ class BrowserLayoutTest(unittest.TestCase):
         handler = functools.partial(Quiet, directory=str(SITE))
         cls.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
         threading.Thread(target=cls.server.serve_forever, daemon=True).start()
-        cls.results = {}
-        for width in cls.WIDTHS:
-            probe = SITE / f"_probe-{width}.html"
-            probe.write_text(PROBE % {"w": width})
-            try:
-                dom = subprocess.run(
-                    [str(CHROME), "--headless=new", "--disable-gpu", "--window-size=2700,1100",
-                     "--virtual-time-budget=5000", "--dump-dom",
-                     f"http://127.0.0.1:{cls.server.server_port}/{probe.name}"],
-                    capture_output=True, text=True, timeout=60).stdout
-            finally:
-                probe.unlink()
-            match = re.search(r'<pre id="out">(.*?)</pre>', dom, re.S)
-            cls.results[width] = json.loads(match.group(1).replace("&quot;", '"')) if match else None
+        cls.results = {width: cls.measure("/", width) for width in cls.WIDTHS}
+        cls.pages = {(path, width): cls.measure(path, width)
+                     for path in ["/about/", "/qsl-cards/", "/blog/"] for width in [375, 1280]}
+
+    @classmethod
+    def measure(cls, src, width):
+        probe = SITE / f"_probe-{width}.html"
+        probe.write_text(PROBE % {"w": width, "src": src})
+        try:
+            dom = subprocess.run(
+                [str(CHROME), "--headless=new", "--disable-gpu", "--window-size=2700,1100",
+                 "--virtual-time-budget=5000", "--dump-dom",
+                 f"http://127.0.0.1:{cls.server.server_port}/{probe.name}"],
+                capture_output=True, text=True, timeout=60).stdout
+        finally:
+            probe.unlink()
+        match = re.search(r'<pre id="out">(.*?)</pre>', dom, re.S)
+        return json.loads(match.group(1).replace("&quot;", '"')) if match else None
 
     @classmethod
     def tearDownClass(cls):
@@ -285,6 +290,21 @@ class BrowserLayoutTest(unittest.TestCase):
         self.assertEqual(self.results[1280]["sidebar"], "none")
         self.assertEqual(self.results[1920]["sidebar"], "none")
         self.assertNotEqual(self.results[375]["sidebar"], "none")
+
+    def test_search_at_right_edge_of_header(self):
+        for width in [1280, 1920]:
+            with self.subTest(width=width):
+                m = self.results[width]
+                # Only the header's own padding (0.4rem plus the button margin) may sit to its right
+                self.assertLessEqual(m["header"]["r"] - m["search"]["r"], 16, m)
+
+    def test_full_width_pages_hide_sidebar_on_desktop_only(self):
+        for path in ["/about/", "/qsl-cards/"]:
+            with self.subTest(path=path):
+                self.assertEqual(self.pages[(path, 1280)]["sidebar"], "none")
+                self.assertNotEqual(self.pages[(path, 375)]["sidebar"], "none")
+        # Pages without full_width keep their navigation sidebar
+        self.assertNotEqual(self.pages[("/blog/", 1280)]["sidebar"], "none")
 
 
 class ProjectHeadingTest(unittest.TestCase):

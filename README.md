@@ -71,6 +71,8 @@ Icon names are paths under the theme's icon folder, `.venv/lib/python3.13/site-p
 
 **Banner tagline and station tags:** edit `[project.extra.station]` (`tagline` and `tags`).
 
+**Full-width pages:** add `full_width: true` to a page's front matter to drop the left navigation sidebar on desktop, as on the About and QSL Cards pages. On phones the sidebar is still the menu, so it stays.
+
 **Where the theme lives:**
 - `overrides/main.html`: adds the banner and the "right now" panel to every page.
 - `overrides/partials/nv-banner.html`: the mountain, orbit, satellite and radiosonde artwork.

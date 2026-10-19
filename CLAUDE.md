@@ -38,6 +38,7 @@ The "Front Range at Dusk" theme sits on top of the stock Zensical theme (`custom
 
 - `overrides/main.html` fills the base template's `hero` block (`partials/nv-banner.html`, the large banner on the homepage and a slim strip elsewhere) and its `content` block (`partials/nv-now.html`, homepage only). Zensical 0.0.71 doesn't set `page.is_homepage`, so the homepage is detected by `page.url == ""`.
 - `overrides/partials/header.html` is a copy of the theme partial, changed to show `extra.wordmark`.
+- `full_width: true` in page front matter adds `nv-banner--full`, which hides the primary sidebar on desktop (it is the menu drawer on phones). The empty `.md-header__source` slot is hidden so search sits at the header's right edge.
 - Editable data lives in `[project.extra]`: `wordmark`, `station` (tagline, tags) and `now` (updated, items with icon/title/text).
 - `docs/stylesheets/nv9p.css` defines the `--nv-*` palette tokens. Duplicate page H1s are hidden by CSS where the banner shows the title.
 

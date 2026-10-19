@@ -56,7 +56,8 @@
     </div>
   </section>
 {% else %}
-  <section class="nv-banner nv-banner--slim">
+  {#- full_width: true in a page's front matter drops the navigation sidebar on desktop -#}
+  <section class="nv-banner nv-banner--slim{% if page.meta and page.meta.full_width %} nv-banner--full{% endif %}">
     <svg class="nv-banner__art" viewBox="0 0 1100 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>{{ sky("nv-dusk-slim") }}</defs>
       <rect width="1100" height="150" fill="url(#nv-dusk-slim)"/>
