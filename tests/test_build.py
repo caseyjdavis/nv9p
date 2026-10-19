@@ -1,10 +1,12 @@
 """Checks against the built site. Run `zensical build` first, then
 `python -m unittest tests.test_build -v`."""
 
+import json
 import math
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -115,9 +117,10 @@ class BannerTest(unittest.TestCase):
     def test_slim_banner_on_inner_pages(self):
         titles = {
             "about/index.html": "About",
-            "logbook/index.html": "Logbook",
+            "logbook/index.html": "My digital logbook",
             "blog/index.html": "Blog",
-            POST: "High Altitude Balloon Part 1 Cameras",
+            POST: "High Altitude Balloon Part 1: Cameras",
+            "404.html": "404 - Not found",
         }
         for page, title in titles.items():
             html = read(page)
@@ -140,12 +143,23 @@ class BannerTest(unittest.TestCase):
 
     def test_duplicate_h1_hidden_by_css(self):
         css = (SITE / "stylesheets/nv9p.css").read_text()
-        self.assertIn(".md-container:has(.nv-banner) .md-content__inner > h1:first-of-type", css)
+        rule = re.search(r"\.md-container:has\(\.nv-banner\) \.md-content__inner > h1:first-of-type \{(.*?)\}", css, re.S)
+        self.assertIsNotNone(rule)
+        # Visually hidden only, so screen readers keep the page heading
+        self.assertNotIn("display: none", rule.group(1))
+        self.assertIn("clip", rule.group(1))
         self.assertIn("<h1", read(POST))
+
+    def test_banner_title_matches_hidden_h1(self):
+        for page in ["about/index.html", "logbook/index.html", "qsl-cards/index.html",
+                     "blog/index.html", "blog/archive/2018/index.html", POST, "404.html"]:
+            html = read(page)
+            content = html[html.index('class="md-content__inner'):]
+            h1 = re.sub(r"<[^>]+>", "", re.search(r"<h1[^>]*>(.*?)</h1>", content, re.S).group(1)).strip()
+            self.assertEqual(banner_copy(html), h1, page)
 
 
 ROOT = SITE.parent
-ZENSICAL = ROOT / ".venv" / "bin" / "zensical"
 
 
 class NowPanelTest(unittest.TestCase):
@@ -180,8 +194,105 @@ class NowPanelTest(unittest.TestCase):
             config = re.sub(r"\n\[\[project\.extra\.now\.items\]\]\n(?:[^\[\n].*\n?)*", "\n", config)
             config = config.replace("[project.extra.now]\n", "[project.extra.now]\nitems = []\n")
             (tmp / "zensical.toml").write_text(config)
-            subprocess.run([str(ZENSICAL), "build"], cwd=tmp, check=True, capture_output=True)
+            subprocess.run([sys.executable, "-m", "zensical", "build"], cwd=tmp, check=True, capture_output=True)
             self.assertNotIn("nv-now", (tmp / "site" / "index.html").read_text())
+
+
+CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+
+PROBE = """<!doctype html><body><iframe id="f" src="/" width="%(w)d" height="1000"></iframe><pre id="out"></pre>
+<script>
+const f = document.getElementById("f");
+f.onload = () => setTimeout(() => {
+  const d = f.contentDocument, win = f.contentWindow;
+  const box = (sel) => { const e = d.querySelector(sel); if (!e) return null;
+    const r = e.getBoundingClientRect(); return {l: r.left, r: r.right, t: r.top, b: r.bottom}; };
+  const sidebar = d.querySelector(".md-sidebar--primary");
+  document.getElementById("out").textContent = JSON.stringify({
+    banner: box(".nv-banner"), art: box(".nv-banner__art"), copy: box(".nv-banner__copy"),
+    sat: box("#nv-sat"), sonde: box("#nv-sonde"),
+    sidebar: sidebar ? win.getComputedStyle(sidebar).display : null,
+    scroll: d.documentElement.scrollWidth,
+  });
+}, 500);
+</script>"""
+
+
+@unittest.skipUnless(CHROME.exists(), "Google Chrome not installed")
+class BrowserLayoutTest(unittest.TestCase):
+    """Homepage banner layout measured in headless Chrome at real widths."""
+
+    WIDTHS = [375, 720, 1280, 1920, 2560]
+
+    @classmethod
+    def setUpClass(cls):
+        import functools
+        import http.server
+        import threading
+        class Quiet(http.server.SimpleHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+        handler = functools.partial(Quiet, directory=str(SITE))
+        cls.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        threading.Thread(target=cls.server.serve_forever, daemon=True).start()
+        cls.results = {}
+        for width in cls.WIDTHS:
+            probe = SITE / f"_probe-{width}.html"
+            probe.write_text(PROBE % {"w": width})
+            try:
+                dom = subprocess.run(
+                    [str(CHROME), "--headless=new", "--disable-gpu", "--window-size=2700,1100",
+                     "--virtual-time-budget=5000", "--dump-dom",
+                     f"http://127.0.0.1:{cls.server.server_port}/{probe.name}"],
+                    capture_output=True, text=True, timeout=60).stdout
+            finally:
+                probe.unlink()
+            match = re.search(r'<pre id="out">(.*?)</pre>', dom, re.S)
+            cls.results[width] = json.loads(match.group(1).replace("&quot;", '"')) if match else None
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.server.shutdown()
+
+    def inside(self, inner, outer):
+        return (inner["l"] >= outer["l"] - 0.5 and inner["r"] <= outer["r"] + 0.5
+                and inner["t"] >= outer["t"] - 0.5 and inner["b"] <= outer["b"] + 0.5)
+
+    def overlaps(self, a, b):
+        return a["l"] < b["r"] and b["l"] < a["r"] and a["t"] < b["b"] and b["t"] < a["b"]
+
+    def test_satellite_and_balloon_fully_in_banner(self):
+        for width, m in self.results.items():
+            with self.subTest(width=width):
+                self.assertTrue(self.inside(m["sat"], m["banner"]), m)
+                self.assertTrue(self.inside(m["sonde"], m["banner"]), m)
+
+    def test_art_clear_of_copy(self):
+        for width, m in self.results.items():
+            with self.subTest(width=width):
+                self.assertFalse(self.overlaps(m["sat"], m["copy"]), m)
+                self.assertFalse(self.overlaps(m["sonde"], m["copy"]), m)
+
+    def test_art_covers_banner_width(self):
+        for width, m in self.results.items():
+            with self.subTest(width=width):
+                self.assertLessEqual(m["art"]["l"], m["banner"]["l"] + 0.5, m)
+                self.assertGreaterEqual(m["art"]["r"], m["banner"]["r"] - 0.5, m)
+                self.assertEqual(m["scroll"], width, m)
+
+    def test_homepage_sidebar_hidden_on_desktop_only(self):
+        self.assertEqual(self.results[1280]["sidebar"], "none")
+        self.assertEqual(self.results[1920]["sidebar"], "none")
+        self.assertNotEqual(self.results[375]["sidebar"], "none")
+
+
+class ProjectHeadingTest(unittest.TestCase):
+    def test_project_headings_use_left_bar(self):
+        css = (SITE / "stylesheets/nv9p.css").read_text()
+        rule = re.search(r"\.md-container:has\(\.nv-banner--home\) \.md-typeset h3 \{(.*?)\}", css, re.S).group(1)
+        self.assertIn("border-left", rule)
+        self.assertNotIn("border-top", rule)
 
 
 if __name__ == "__main__":

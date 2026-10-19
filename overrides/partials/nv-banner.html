@@ -65,7 +65,10 @@
     </svg>
     <div class="nv-banner__inner md-grid">
       <div class="nv-banner__copy">
-        <p class="nv-banner__title">{{ page.meta.title if page.meta and page.meta.title else page.title }}</p>
+        {#- Show the page's own first heading (hidden below by CSS), so nothing is lost -#}
+        {% set first = page.toc | first if page.toc else none %}
+        {% set heading = first.title | striptags if first and first.level == 1 else "" %}
+        <p class="nv-banner__title">{{ heading or (page.meta.title if page.meta and page.meta.title) or page.title or "404 - Not found" }}</p>
       </div>
     </div>
   </section>
