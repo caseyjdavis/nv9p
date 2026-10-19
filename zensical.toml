@@ -36,6 +36,24 @@ recent_posts_count = 3
 tagline = "Working satellites from the Colorado Rockies"
 tags = ["DM79", "ITU 7", "CQ 4", "Rocky Mountain Div."]
 
+[project.extra.now]
+updated = "October 2026"
+
+[[project.extra.now.items]]
+icon = "material/radio-tower"
+title = "Portable satellite tower"
+text = "Building a portable tower for working 2m/70cm satellites."
+
+[[project.extra.now.items]]
+icon = "material/crosshairs-gps"
+title = "Front Range sonde chasing"
+text = "Tracking and recovering radiosondes after they come down along the Front Range."
+
+[[project.extra.now.items]]
+icon = "fontawesome/solid/cloud-arrow-up"
+title = "Weather balloon launches"
+text = "Launching my own weather balloons."
+
 [project.extra.analytics]
 provider = "google"
 property = "G-J9JWWV4FF8"

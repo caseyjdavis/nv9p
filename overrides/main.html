@@ -3,3 +3,11 @@
 {% block hero %}
   {% include "partials/nv-banner.html" %}
 {% endblock %}
+
+{% block content %}
+  {#- Zensical 0.0.71 leaves page.is_homepage unset; the homepage has an empty url -#}
+  {% if page.is_homepage or page.url == "" %}
+    {% include "partials/nv-now.html" %}
+  {% endif %}
+  {{ super() }}
+{% endblock %}

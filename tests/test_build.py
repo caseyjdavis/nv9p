@@ -3,6 +3,9 @@
 
 import math
 import re
+import shutil
+import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -139,6 +142,46 @@ class BannerTest(unittest.TestCase):
         css = (SITE / "stylesheets/nv9p.css").read_text()
         self.assertIn(".md-container:has(.nv-banner) .md-content__inner > h1:first-of-type", css)
         self.assertIn("<h1", read(POST))
+
+
+ROOT = SITE.parent
+ZENSICAL = ROOT / ".venv" / "bin" / "zensical"
+
+
+class NowPanelTest(unittest.TestCase):
+    """Homepage "What I'm working on right now" panel, driven by config."""
+
+    def test_panel_on_homepage(self):
+        html = read("index.html")
+        panel = re.search(r'<section class="nv-now".*?</section>', html, re.S).group(0)
+        self.assertRegex(panel, r"What I(&#39;|')m working on right now")
+        self.assertIn("updated October 2026", panel)
+        titles = ["Portable satellite tower", "Front Range sonde chasing", "Weather balloon launches"]
+        positions = [panel.index(t) for t in titles]
+        self.assertEqual(positions, sorted(positions))
+        self.assertEqual(len(re.findall(r'<li class="nv-now__item">\s*<span class="nv-now__icon">\s*<svg', panel)), 3)
+
+    def test_panel_before_intro(self):
+        html = read("index.html")
+        self.assertLess(html.index('class="nv-now"'), html.index("Welcome to the website of radio station NV9P"))
+
+    def test_panel_only_on_homepage(self):
+        for page in ["about/index.html", "blog/index.html", POST]:
+            self.assertNotIn("nv-now", read(page), page)
+
+    def test_empty_items_renders_nothing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            for name in ["docs", "overrides", "ext", "hooks"]:
+                if (ROOT / name).exists():
+                    shutil.copytree(ROOT / name, tmp / name)
+            shutil.copy(ROOT / "main.py", tmp)
+            config = (ROOT / "zensical.toml").read_text()
+            config = re.sub(r"\n\[\[project\.extra\.now\.items\]\]\n(?:[^\[\n].*\n?)*", "\n", config)
+            config = config.replace("[project.extra.now]\n", "[project.extra.now]\nitems = []\n")
+            (tmp / "zensical.toml").write_text(config)
+            subprocess.run([str(ZENSICAL), "build"], cwd=tmp, check=True, capture_output=True)
+            self.assertNotIn("nv-now", (tmp / "site" / "index.html").read_text())
 
 
 if __name__ == "__main__":

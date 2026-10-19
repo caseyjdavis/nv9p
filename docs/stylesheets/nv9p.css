@@ -33,10 +33,6 @@
   letter-spacing: 0.04em;
 }
 
-.md-header .md-logo svg {
-  fill: var(--nv-accent);
-}
-
 .md-tabs {
   background-color: var(--nv-sky-1);
   color: var(--nv-peach);
@@ -165,5 +161,85 @@
 
   .nv-banner--slim .nv-banner__copy {
     padding-top: 28px;
+  }
+}
+
+/* "What I'm working on right now" panel */
+.md-typeset .nv-now {
+  margin: 0 0 1.6em;
+  padding: 16px 18px;
+  border: 1px solid #3a2e3a;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #24202b, #1e1f27);
+}
+
+.md-typeset .nv-now__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.md-typeset .nv-now__head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--nv-peach);
+}
+
+.nv-now__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--nv-accent);
+  box-shadow: 0 0 0 4px rgba(255, 112, 67, 0.2);
+}
+
+.nv-now__updated {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset ul.nv-now__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset ul.nv-now__items > li.nv-now__item {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.nv-now__item strong {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+}
+
+.nv-now__icon {
+  flex: none;
+  width: 20px;
+  color: var(--nv-accent);
+}
+
+.nv-now__icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+@media screen and (max-width: 43.75em) {
+  .md-typeset ul.nv-now__items {
+    grid-template-columns: 1fr;
   }
 }

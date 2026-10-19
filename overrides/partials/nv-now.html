@@ -1,0 +1,24 @@
+{#- "What I'm working on right now" panel, from [project.extra.now] -#}
+{% set now = config.extra.now %}
+{% if now and now.items %}
+  <section class="nv-now" aria-labelledby="nv-now-heading">
+    <div class="nv-now__head">
+      <span class="nv-now__dot" aria-hidden="true"></span>
+      <h2 id="nv-now-heading">What I'm working on right now</h2>
+      {% if now.updated %}
+        <span class="nv-now__updated">updated {{ now.updated }}</span>
+      {% endif %}
+    </div>
+    <ul class="nv-now__items">
+      {% for item in now.items %}
+        <li class="nv-now__item">
+          <span class="nv-now__icon">{% include ".icons/" ~ item.icon ~ ".svg" %}</span>
+          <div>
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.text }}</span>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
