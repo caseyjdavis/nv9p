@@ -53,3 +53,34 @@ zensical build
 ```
 
 The output is generated in the `site/` directory and can be deployed to any static hosting provider. Site configuration lives in `zensical.toml`.
+
+## Theme Upkeep
+
+The site uses a custom "Front Range at Dusk" theme layered on top of Zensical's stock theme. Everything you'd normally change lives in `zensical.toml`, so no HTML or CSS is needed.
+
+**"What I'm working on right now"** (homepage panel): edit `[project.extra.now]`. Change `updated`, and add, remove or reorder the `[[project.extra.now.items]]` blocks. Each item has an `icon`, a `title` and a short `text`. If you remove every item, the panel disappears.
+
+```toml
+[[project.extra.now.items]]
+icon = "material/radio-tower"
+title = "Portable satellite tower"
+text = "Building a portable tower for working 2m/70cm satellites."
+```
+
+Icon names are paths under the theme's icon folder, `.venv/lib/python3.13/site-packages/zensical/templates/.icons/`, for example `material/<name>` or `fontawesome/solid/<name>`, without the `.svg` extension. A misspelled icon name stops the build with a "template not found" error.
+
+**Banner tagline and station tags:** edit `[project.extra.station]` (`tagline` and `tags`).
+
+**Where the theme lives:**
+- `overrides/main.html`: adds the banner and the "right now" panel to every page.
+- `overrides/partials/nv-banner.html`: the mountain, orbit, satellite and radiosonde artwork.
+- `overrides/partials/nv-now.html`: the "right now" panel.
+- `overrides/partials/header.html`: a copy of the theme's header with one change, which shows `extra.wordmark` ("NV9P") instead of the site name. After upgrading Zensical, copy the new `partials/header.html` over it and reapply that one line.
+- `docs/stylesheets/nv9p.css`: colors and layout.
+
+**Checking a build:**
+
+```bash
+zensical build
+python -m unittest tests.test_build -v
+```

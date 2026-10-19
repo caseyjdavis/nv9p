@@ -32,6 +32,19 @@ Blog posts live in `docs/blog/posts/*.md` with YAML frontmatter (`title`, `date`
 
 `zensical.toml` controls everything: theme, plugins (glightbox, macros, blog; search is on by default), nav structure, markdown extensions, and Google Analytics.
 
+### Theme
+
+The "Front Range at Dusk" theme sits on top of the stock Zensical theme (`custom_dir = "overrides"`, `extra_css = ["stylesheets/nv9p.css"]`). The design and plan are in `specs/`.
+
+- `overrides/main.html` fills the base template's `hero` block (`partials/nv-banner.html`, the large banner on the homepage and a slim strip elsewhere) and its `content` block (`partials/nv-now.html`, homepage only). Zensical 0.0.71 doesn't set `page.is_homepage`, so the homepage is detected by `page.url == ""`.
+- `overrides/partials/header.html` is a copy of the theme partial, changed to show `extra.wordmark`.
+- Editable data lives in `[project.extra]`: `wordmark`, `station` (tagline, tags) and `now` (updated, items with icon/title/text).
+- `docs/stylesheets/nv9p.css` defines the `--nv-*` palette tokens. Duplicate page H1s are hidden by CSS where the banner shows the title.
+
+### Tests
+
+`tests/test_build.py` (stdlib `unittest`) checks the built `site/` output. Run `zensical build`, then `python -m unittest tests.test_build -v`. `site/` is build output and is not tracked; Cloudflare Pages builds from source.
+
 ### Blog Post Frontmatter
 
 ```yaml
