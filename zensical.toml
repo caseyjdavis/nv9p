@@ -32,6 +32,10 @@ accent = "deep-orange"
 wordmark = "NV9P"
 recent_posts_count = 3
 
+[project.extra.station]
+tagline = "Working satellites from the Colorado Rockies"
+tags = ["DM79", "ITU 7", "CQ 4", "Rocky Mountain Div."]
+
 [project.extra.analytics]
 provider = "google"
 property = "G-J9JWWV4FF8"

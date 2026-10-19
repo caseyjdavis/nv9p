@@ -1,0 +1,72 @@
+{#- Front Range at Dusk banner. Large on the homepage, slim elsewhere. -#}
+{% macro ridges(id) %}
+  <g id="{{ id }}">
+    <path d="M0 230 L80 200 L160 215 L250 180 L330 205 L420 170 L520 200 L600 175 L700 205 L800 185 L900 210 L1000 190 L1100 205 V300 H0Z" style="fill:var(--nv-ridge-1)" opacity=".85"/>
+    <path d="M0 255 L120 235 L210 245 L330 215 L400 228 L470 196 L520 182 L560 190 L610 220 L700 238 L820 222 L930 245 L1100 232 V300 H0Z" style="fill:var(--nv-ridge-2)"/>
+    <path d="M0 280 L140 268 L300 276 L460 262 L640 274 L820 264 L1100 276 V300 H0Z" style="fill:var(--nv-ridge-3)"/>
+  </g>
+{% endmacro %}
+{% macro sky(id) %}
+  <linearGradient id="{{ id }}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" style="stop-color:var(--nv-sky-1)"/>
+    <stop offset=".55" style="stop-color:var(--nv-sky-2)"/>
+    <stop offset=".85" style="stop-color:var(--nv-sky-3)"/>
+    <stop offset="1" style="stop-color:var(--nv-sky-4)"/>
+  </linearGradient>
+{% endmacro %}
+{% set station = config.extra.station or {} %}
+{#- Zensical 0.0.71 leaves page.is_homepage unset; the homepage has an empty url -#}
+{% set is_home = page.is_homepage or page.url == "" %}
+{% if is_home %}
+  <section class="nv-banner nv-banner--home" aria-label="{{ config.site_name | e }}">
+    <svg class="nv-banner__art" viewBox="0 0 1100 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>{{ sky("nv-dusk-home") }}</defs>
+      <rect width="1100" height="300" fill="url(#nv-dusk-home)"/>
+      <ellipse id="nv-orbit" cx="760" cy="250" rx="560" ry="190" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 7"/>
+      <ellipse cx="420" cy="290" rx="700" ry="150" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="1" stroke-dasharray="2 9"/>
+      {#- Point on #nv-orbit at t = 75deg, rotated to the orbit's tangent -#}
+      <g id="nv-sat" transform="translate(905 66.5) rotate(5.2)">
+        <rect x="-4" y="-4" width="8" height="8" fill="#fff"/>
+        <rect x="-18" y="-2" width="11" height="4" style="fill:var(--nv-peach)"/>
+        <rect x="7" y="-2" width="11" height="4" style="fill:var(--nv-peach)"/>
+      </g>
+      <g id="nv-sonde">
+        <path d="M660 34 C 676 34, 683 48, 681 60 C 679 72, 668 80, 662 84 L 658 84 C 652 80, 641 72, 639 60 C 637 48, 644 34, 660 34 Z" style="fill:var(--nv-peach)" opacity=".92"/>
+        <path d="M650 44 C 653 39, 658 38, 662 39" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+        <path d="M652 104 Q 660 94 668 104 Z" fill="#ffab91" opacity=".9"/>
+        <line x1="660" y1="84" x2="660" y2="96" style="stroke:var(--nv-peach)" stroke-opacity=".8" stroke-width="1"/>
+        <line x1="660" y1="104" x2="660" y2="128" style="stroke:var(--nv-peach)" stroke-opacity=".8" stroke-width="1"/>
+        <rect x="656" y="128" width="8" height="11" rx="1" fill="#fff"/>
+        <line x1="660" y1="139" x2="660" y2="148" stroke="#fff" stroke-width="1"/>
+      </g>
+      {{ ridges("nv-ridges-home") }}
+    </svg>
+    <div class="nv-banner__inner md-grid">
+      <div class="nv-banner__copy">
+        <p class="nv-banner__call">{{ config.extra.wordmark | d(config.site_name, true) }}</p>
+        {% if station.tagline %}
+          <p class="nv-banner__tagline">{{ station.tagline }}</p>
+        {% endif %}
+        {% if station.tags %}
+          <ul class="nv-banner__tags">
+            {% for tag in station.tags %}<li>{{ tag }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% else %}
+  <section class="nv-banner nv-banner--slim">
+    <svg class="nv-banner__art" viewBox="0 0 1100 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>{{ sky("nv-dusk-slim") }}</defs>
+      <rect width="1100" height="150" fill="url(#nv-dusk-slim)"/>
+      <ellipse cx="760" cy="150" rx="560" ry="110" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2 7"/>
+      <g transform="translate(0 30) scale(1 .4)">{{ ridges("nv-ridges-slim") }}</g>
+    </svg>
+    <div class="nv-banner__inner md-grid">
+      <div class="nv-banner__copy">
+        <p class="nv-banner__title">{{ page.meta.title if page.meta and page.meta.title else page.title }}</p>
+      </div>
+    </div>
+  </section>
+{% endif %}

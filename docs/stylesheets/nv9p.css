@@ -48,3 +48,122 @@
   opacity: 1;
   box-shadow: 0 2px 0 var(--nv-accent);
 }
+
+/* Banner: sky, orbit, satellite, radiosonde and Front Range ridges */
+.nv-banner {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--nv-sky-1);
+  color: #fff;
+}
+
+.nv-banner--home {
+  height: 320px;
+}
+
+.nv-banner--slim {
+  height: 150px;
+}
+
+.nv-banner__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nv-banner__inner {
+  position: relative;
+  height: 100%;
+  padding: 0 0.8rem;
+}
+
+.nv-banner__copy {
+  padding-top: 56px;
+  max-width: 32rem;
+}
+
+.nv-banner--slim .nv-banner__copy {
+  padding-top: 40px;
+  max-width: 40rem;
+}
+
+.nv-banner p {
+  margin: 0;
+}
+
+.nv-banner__call {
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.nv-banner__tagline {
+  margin-top: 10px !important;
+  font-size: 16px;
+  opacity: 0.92;
+}
+
+.nv-banner__title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 1px 8px rgba(23, 19, 31, 0.6);
+  overflow-wrap: anywhere;
+}
+
+.nv-banner__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-banner__tags li {
+  font: 600 12px/1 ui-monospace, Menlo, monospace;
+  padding: 6px 9px;
+  border-radius: 4px;
+  background: rgba(255, 112, 67, 0.18);
+  color: #ffab91;
+  border: 1px solid rgba(255, 112, 67, 0.5);
+}
+
+/* The banner shows the page title, so hide the duplicate H1 (kept in the HTML) */
+.md-container:has(.nv-banner) .md-content__inner > h1:first-of-type {
+  display: none;
+}
+
+/* Phones and small tablets: copy on top, artwork below it, cropped around
+   the balloon and satellite so nothing sits behind the text */
+@media screen and (max-width: 47.9375em) {
+  .nv-banner--home {
+    height: 440px;
+  }
+
+  .nv-banner--home .nv-banner__art {
+    inset: auto;
+    top: 170px;
+    left: calc(50% - 702px);
+    width: 990px;
+    height: 270px;
+  }
+
+  .nv-banner__copy {
+    padding-top: 28px;
+  }
+
+  .nv-banner__call {
+    font-size: 42px;
+  }
+
+  .nv-banner__title {
+    font-size: 22px;
+  }
+
+  .nv-banner--slim .nv-banner__copy {
+    padding-top: 28px;
+  }
+}
