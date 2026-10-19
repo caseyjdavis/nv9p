@@ -1,0 +1,50 @@
+/* NV9P "Front Range at Dusk" theme. See specs/2026-10-18-dusk-theme-design.md */
+
+:root {
+  --nv-sky-1: #1b1f3a;
+  --nv-sky-2: #6a3a5c;
+  --nv-sky-3: #ff7043;
+  --nv-sky-4: #ffb74d;
+  --nv-ridge-1: #4a2f4a;
+  --nv-ridge-2: #2a1f33;
+  --nv-ridge-3: #17131f;
+  --nv-accent: #ff7043;
+  --nv-peach: #ffd9c2;
+  --nv-panel: #23252e;
+}
+
+/* Map the theme's accent colors onto the dusk palette */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--nv-accent);
+  --md-primary-fg-color--light: #ff8a65;
+  --md-primary-fg-color--dark: #f4511e;
+  --md-accent-fg-color: var(--nv-accent);
+  --md-typeset-a-color: #ff8a65;
+}
+
+/* Header and tabs sit on the top of the dusk sky */
+.md-header {
+  background-color: var(--nv-sky-1);
+  color: #fff;
+}
+
+.md-header__topic:first-child {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.md-header .md-logo svg {
+  fill: var(--nv-accent);
+}
+
+.md-tabs {
+  background-color: var(--nv-sky-1);
+  color: var(--nv-peach);
+  box-shadow: none;
+}
+
+.md-tabs__item--active .md-tabs__link {
+  color: #fff;
+  opacity: 1;
+  box-shadow: 0 2px 0 var(--nv-accent);
+}

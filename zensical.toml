@@ -2,6 +2,7 @@
 site_name = "NV9P Amateur Radio"
 site_description = "Ham Radio projects and experiences by NV9P"
 site_url = "https://www.nv9p.com/"
+extra_css = ["stylesheets/nv9p.css"]
 nav = [
   { "Home" = "index.md" },
   { "Blog" = ["blog/index.md"] },
@@ -11,13 +12,16 @@ nav = [
 ]
 
 [project.theme]
-favicon = "img/tower-broadcast-solid.svg"
+favicon = "img/satellite.svg"
+custom_dir = "overrides"
 features = [
   "navigation.indexes",
+  "navigation.tabs",
+  "navigation.tabs.sticky",
 ]
 
 [project.theme.icon]
-logo = "fontawesome/solid/tower-broadcast"
+logo = "fontawesome/solid/satellite"
 
 [project.theme.palette]
 scheme = "slate"
@@ -25,6 +29,7 @@ primary = "deep-orange"
 accent = "deep-orange"
 
 [project.extra]
+wordmark = "NV9P"
 recent_posts_count = 3
 
 [project.extra.analytics]
