@@ -292,3 +292,20 @@
     display: none;
   }
 }
+
+/* EOSS flight viewers are standalone pages embedded in an iframe, so their
+   own light theme and full-window layout stay isolated from the site */
+.nv-embed {
+  margin: 1.2em 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.nv-embed iframe {
+  display: block;
+  width: 100%;
+  height: min(80vh, 860px);
+  min-height: 480px;
+  border: 0;
+}

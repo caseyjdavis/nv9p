@@ -307,6 +307,34 @@ class BrowserLayoutTest(unittest.TestCase):
         self.assertNotEqual(self.pages[("/blog/", 1280)]["sidebar"], "none")
 
 
+class EossTest(unittest.TestCase):
+    """EOSS section: an index of flight days and one page per flight day."""
+
+    FLIGHT = "eoss/410-411/"
+
+    def test_eoss_tab_in_header(self):
+        self.assertRegex(header(read("index.html")), r">\s*EOSS\s*<")
+
+    def test_index_links_flight_day(self):
+        html = read("eoss/index.html")
+        self.assertEqual(banner_copy(html), "Edge of Space Sciences")
+        self.assertIn('href="410-411/"', html)
+
+    def test_flight_day_embeds_viewer(self):
+        html = read(self.FLIGHT + "index.html")
+        self.assertEqual(banner_copy(html), "EOSS-410 and EOSS-411")
+        self.assertIn("nv-banner--full", html)
+        self.assertRegex(html, r'<div class="nv-embed">\s*<iframe src="flight-day.html"')
+        for name in ["EOSL-410.csv", "EOSL-411.csv", "chase-gps.csv"]:
+            self.assertIn(f'href="{name}"', html, name)
+            self.assertTrue((SITE / self.FLIGHT / name).is_file(), name)
+
+    def test_viewer_copied_unchanged(self):
+        built = (SITE / self.FLIGHT / "flight-day.html").read_bytes()
+        source = (ROOT / "docs" / self.FLIGHT / "flight-day.html").read_bytes()
+        self.assertEqual(built, source)
+
+
 class ProjectHeadingTest(unittest.TestCase):
     def test_project_headings_use_left_bar(self):
         css = (SITE / "stylesheets/nv9p.css").read_text()

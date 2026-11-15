@@ -7,6 +7,10 @@ nav = [
   { "Home" = "index.md" },
   { "Blog" = ["blog/index.md"] },
   { "Logbook" = "logbook.md" },
+  { "EOSS" = [
+    "eoss/index.md",
+    { "Flights 410 & 411" = "eoss/410-411/index.md" },
+  ] },
   { "QSL Cards" = "qsl-cards.md" },
   { "About" = "about.md" },
 ]
