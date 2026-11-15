@@ -292,29 +292,3 @@
     display: none;
   }
 }
-
-/* EOSS flight viewers are standalone pages embedded in an iframe, so their
-   own light theme and full-window layout stay isolated from the site */
-/* The viewer's 3D camera has a fixed vertical field of view, so a stage much
-   wider than it is tall shows past the edges of the terrain and the ground
-   looks like a slab floating in the sky. Keep the 3D stage (the frame less
-   up to 190px of the viewer's own header and playback bar) no wider than
-   1.9:1, as it is when opened full screen: on short windows the frame narrows
-   and centers instead of getting squat, and on tall ones it stops at 1.6:1 */
-.nv-embed {
-  --nv-embed-h: max(600px, 100dvh - 5rem);
-  container-type: inline-size;
-  max-width: calc((var(--nv-embed-h) - 190px) * 1.9);
-  margin: 1.2em auto;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.nv-embed iframe {
-  display: block;
-  width: 100%;
-  height: min(100dvh - 5rem, 100cqw / 1.6 + 150px);
-  min-height: 600px;
-  border: 0;
-}

@@ -219,25 +219,6 @@ f.onload = () => setTimeout(() => {
 </script>"""
 
 
-EMBED_PROBE = """<!doctype html><body style="margin:0"><iframe id="f" src="/eoss/410-411/" width="%(w)d" height="%(h)d" style="border:0"></iframe><pre id="out"></pre>
-<script>
-const f = document.getElementById("f");
-f.onload = () => {
-  const poll = setInterval(() => {
-    const inner = f.contentDocument.querySelector(".nv-embed iframe");
-    const stage = inner && inner.contentDocument && inner.contentDocument.querySelector("#stage-flight");
-    if (!stage) return;
-    clearInterval(poll);
-    const r = stage.getBoundingClientRect();
-    document.getElementById("out").textContent = JSON.stringify({
-      stage: [r.width, r.height], aspect: r.width / r.height,
-      scroll: f.contentDocument.documentElement.scrollWidth,
-    });
-  }, 100);
-};
-</script>"""
-
-
 @unittest.skipUnless(CHROME.exists(), "Google Chrome not installed")
 class BrowserLayoutTest(unittest.TestCase):
     """Homepage banner layout measured in headless Chrome at real widths."""
@@ -325,32 +306,6 @@ class BrowserLayoutTest(unittest.TestCase):
         # Pages without full_width keep their navigation sidebar
         self.assertNotEqual(self.pages[("/blog/", 1280)]["sidebar"], "none")
 
-    def test_eoss_viewer_stage_not_too_wide(self):
-        # The viewer's camera has a fixed vertical field of view; a stage much
-        # wider than 1.9:1 shows past the terrain's edges
-        for width, height in [(1280, 680), (1440, 900), (1920, 1080), (869, 772)]:
-            with self.subTest(size=f"{width}x{height}"):
-                m = self.measure_embed(width, height)
-                self.assertIsNotNone(m)
-                self.assertLessEqual(m["aspect"], 1.95, m)
-                self.assertGreaterEqual(m["aspect"], 1.5, m)
-                self.assertEqual(m["scroll"], width, m)
-
-    @classmethod
-    def measure_embed(cls, width, height):
-        probe = SITE / f"_probe-eoss-{width}.html"
-        probe.write_text(EMBED_PROBE % {"w": width, "h": height})
-        try:
-            dom = subprocess.run(
-                [str(CHROME), "--headless=new", "--disable-gpu", "--window-size=2700,1300",
-                 "--virtual-time-budget=8000", "--dump-dom",
-                 f"http://127.0.0.1:{cls.server.server_port}/{probe.name}"],
-                capture_output=True, text=True, timeout=60).stdout
-        finally:
-            probe.unlink()
-        match = re.search(r'<pre id="out">(.*?)</pre>', dom, re.S)
-        return json.loads(match.group(1).replace("&quot;", '"')) if match else None
-
 
 class EossTest(unittest.TestCase):
     """EOSS section: an index of flight days and one page per flight day."""
@@ -365,11 +320,13 @@ class EossTest(unittest.TestCase):
         self.assertEqual(banner_copy(html), "Edge of Space Sciences")
         self.assertIn('href="410-411/"', html)
 
-    def test_flight_day_embeds_viewer(self):
+    def test_flight_day_links_viewer(self):
         html = read(self.FLIGHT + "index.html")
         self.assertEqual(banner_copy(html), "EOSS-410 and EOSS-411")
         self.assertIn("nv-banner--full", html)
-        self.assertRegex(html, r'<div class="nv-embed">\s*<iframe src="flight-day.html"')
+        # The viewer opens on its own page, not embedded
+        self.assertRegex(html, r'<a class="md-button md-button--primary" href="flight-day.html"')
+        self.assertNotIn("<iframe", html)
         for name in ["EOSL-410.csv", "EOSL-411.csv", "chase-gps.csv"]:
             self.assertIn(f'href="{name}"', html, name)
             self.assertTrue((SITE / self.FLIGHT / name).is_file(), name)
@@ -378,6 +335,10 @@ class EossTest(unittest.TestCase):
         built = (SITE / self.FLIGHT / "flight-day.html").read_bytes()
         source = (ROOT / "docs" / self.FLIGHT / "flight-day.html").read_bytes()
         self.assertEqual(built, source)
+
+    def test_viewer_plays_at_100x_by_default(self):
+        rate = re.search(r'<select id="rate".*?</select>', read(self.FLIGHT + "flight-day.html"), re.S).group(0)
+        self.assertEqual(re.findall(r'<option value="(\d+)" selected>', rate), ["100"])
 
 
 class ProjectHeadingTest(unittest.TestCase):

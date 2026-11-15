@@ -44,7 +44,7 @@ The "Front Range at Dusk" theme sits on top of the stock Zensical theme (`custom
 
 ### EOSS flight days
 
-`docs/eoss/` has one folder per flight day (e.g. `410-411/`) holding a standalone viewer HTML, its CSV telemetry and an `index.md` that embeds the viewer in a `.nv-embed` iframe. Viewers are published unchanged. Their 3D camera has a fixed vertical field of view, so the `.nv-embed` CSS keeps the stage no wider than about 1.9:1. To add a day: new folder, add a row to `docs/eoss/index.md`, add it under `"EOSS"` in the `zensical.toml` nav.
+`docs/eoss/` has one folder per flight day (e.g. `410-411/`) holding a standalone viewer HTML, its CSV telemetry and an `index.md` that links to the viewer. The viewer is not embedded: its 3D camera has a fixed vertical field of view and only looks right with the whole window, so the page links to it full screen. To add a day: new folder, add a row to `docs/eoss/index.md`, add it under `"EOSS"` in the `zensical.toml` nav.
 
 ### Tests
 
