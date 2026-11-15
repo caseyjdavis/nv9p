@@ -68,7 +68,11 @@ def parse_post(filepath, filename):
             if ':' in line:
                 key, value = line.split(':', 1)
                 metadata[key.strip()] = value.strip().strip('"\'')
-        
+
+        # Drafts are left out of the build, so don't link to them
+        if metadata.get('draft', '').lower() == 'true':
+            return None
+
         # Extract title
         title = metadata.get('title', '')
         if not title:
