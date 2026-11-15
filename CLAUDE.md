@@ -42,6 +42,10 @@ The "Front Range at Dusk" theme sits on top of the stock Zensical theme (`custom
 - Editable data lives in `[project.extra]`: `wordmark`, `station` (tagline, tags) and `now` (updated, items with icon/title/text).
 - `docs/stylesheets/nv9p.css` defines the `--nv-*` palette tokens. Duplicate page H1s are hidden by CSS where the banner shows the title.
 
+### EOSS flight days
+
+`docs/eoss/` has one folder per flight day (e.g. `410-411/`) holding a standalone viewer HTML, its CSV telemetry and an `index.md` that embeds the viewer in a `.nv-embed` iframe. Viewers are published unchanged. Their 3D camera has a fixed vertical field of view, so the `.nv-embed` CSS keeps the stage no wider than about 1.9:1. To add a day: new folder, add a row to `docs/eoss/index.md`, add it under `"EOSS"` in the `zensical.toml` nav.
+
 ### Tests
 
 `tests/test_build.py` (stdlib `unittest`) checks the built `site/` output. Run `zensical build`, then `python -m unittest tests.test_build -v`. `site/` is build output and is not tracked; Cloudflare Pages builds from source.
